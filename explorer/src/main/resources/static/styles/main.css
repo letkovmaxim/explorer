@@ -1,0 +1,102 @@
+.icon {
+    text-align: center;
+}
+
+.name {
+    width: 250px;
+}
+
+.date {
+    width: 250px;
+}
+
+.type {
+    width: 150px;
+}
+
+.size {
+    width: 80px;
+    text-align: right;
+}
+
+.sizelable {
+    width: 80px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    border-radius: 0 0 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead {
+    background-color: #ff91e4;
+    color: #ffffff;
+    text-align: left;
+}
+
+th {
+    height: 70px;
+}
+
+.content:hover {
+    background-color: #f8c6ff;
+}
+
+button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 1em;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    font-size: 1.1em;
+    font-family: "Segoe UI", sans-serif;
+    vertical-align: middle;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.backbtn {
+    display: inline-block;
+    width: 20px;
+    transition-duration: 0.4s;
+}
+
+.backbtn:hover {
+    left: -130px;
+}
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #ff91e4;
+}
+th, td {
+    padding: 3px 4px;
+}
+
+div {
+    text-decoration: underline;
+}

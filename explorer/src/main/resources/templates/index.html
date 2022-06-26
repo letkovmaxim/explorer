@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorer</title>
+    <link th:href="@{styles/main.css}" rel="stylesheet" />
+</head>
+<body>
+    <!--Надпись текущий каталог-->
+    <p th:if="${not explorer.isDisk}" th:text="'Текущий каталог: ' + ${explorer.dir.getName}"></p>
+    <p th:if="${explorer.isDisk}" th:text="'Этот компьютер'"></p>
+
+    <!--Кнопка назад-->
+    <form th:if="${not explorer.isRoot and not explorer.isDisk}" method="post" th:action="@{/(param=${explorer.dir.getParent})}" class="inline">
+        <button type="submit" class="backbtn">&#9650</button>
+    </form>
+    <form th:if="${explorer.isRoot and not explorer.isDisk}" method="post" th:action="@{/(param=root)}" class="inline">
+        <button type="submit" class="backbtn">&#9650</button>
+    </form>
+
+    <!--Абсолютный путь-->
+    <div th:if="${not explorer.isDisk}" th:text="${explorer.dir.getAbsolutePath}" class="inline"></div>
+    <div th:if="${explorer.isDisk}" th:text="'Устройства и диски'" class="inline"></div>
+
+    <!--Таблица файлов-->
+    <table>
+        <!--Заголовки-->
+        <thead>
+            <td class="icon">Имя</td>
+            <td class="name"></td>
+            <td class="date">Дата изменения</td>
+            <td class="type">Тип</td>
+            <td class="sizelable">Размер</td>
+        </thead>
+
+        <tr th:each="file: ${explorer.filesData}" class="content">
+            <td th:text="${file.isDirectory}? '&#x1F4C1' : '&#x1F4C4' " class="icon"></td>
+
+            <!--Кнопка, если папка-->
+            <td th:if="${file.isDirectory}" class="name">
+                <form method="post" th:action="@{/(param=${file.path})}">
+                    <button th:if="${not explorer.isDisk}" type="submit" th:text="${file.name}"></button>
+                    <button th:if="${explorer.isDisk}" type="submit" th:text="${file.path}"></button>
+                </form>
+            </td>
+            <!--Название файла, если не кнопка-->
+            <td th:if="${not file.isDirectory}" th:text="${file.name}" class="name"></td>
+
+            <!--Дата изменения-->
+            <td th:text="${file.lastModified}" class="date"></td>
+            <!--Тип-->
+            <td th:text="${file.type}" class="type"></td>
+            <!--Размер-->
+            <td th:text="${not file.isDirectory}? ${file.size}" class="size"></td>
+        </tr>
+    </table>
+</body>
+</html>
